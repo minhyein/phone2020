@@ -31,3 +31,5 @@
   * 리셋, 버튼의 상태, 랜덤 배치
 * 게임 화면 예시
 ![자료화면](https://user-images.githubusercontent.com/22370765/80451310-7882f180-895e-11ea-90b8-17d9de946552.png)
+* 주차별 일정
+ ![그림1](https://user-images.githubusercontent.com/22370765/83321882-16374c80-a28e-11ea-9ff0-6eed01cee6f4.png)
