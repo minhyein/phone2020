@@ -33,3 +33,7 @@
 ![자료화면](https://user-images.githubusercontent.com/22370765/80451310-7882f180-895e-11ea-90b8-17d9de946552.png)
 * 주차별 일정
  ![그림1](https://user-images.githubusercontent.com/22370765/83321882-16374c80-a28e-11ea-9ff0-6eed01cee6f4.png)
+* 진행상황
+![진행상황](https://user-images.githubusercontent.com/22370765/84143297-4a321f00-aa91-11ea-9c22-e00268b335dd.png)
+* 비고
+ * 특정 부분만 확대하는 게 불가능해 게임 플레이 화면과 식물 성장 화면을 분리
