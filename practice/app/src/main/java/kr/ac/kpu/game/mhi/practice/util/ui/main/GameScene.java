@@ -1,22 +1,17 @@
 package kr.ac.kpu.game.mhi.practice.util.ui.main;
 
-import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.obj.ScoreObject;
-import kr.ac.kpu.game.scgyong.gameskeleton.game.HighscoreItem;
-import kr.ac.kpu.game.scgyong.gameskeleton.game.Serializer;
-
 public abstract class GameScene {
     private static final String TAG = GameScene.class.getSimpleName();
     private static ArrayList<GameScene> sceneStack = new ArrayList<>();
 
     protected static GameScene topGameScene;
-    protected static ScoreObject scoreObject;
+    //protected static ScoreObject scoreObject;
 
     public GameWorld getGameWorld() {
         return gameWorld;
@@ -81,7 +76,7 @@ public abstract class GameScene {
         this.enter();
     }
 
-    private ArrayList<HighscoreItem> scores = new ArrayList<>();
+//    private ArrayList<HighscoreItem> scores = new ArrayList<>();
 
     public void update() { gameWorld.update(); }
     public void draw(Canvas canvas) { gameWorld.draw(canvas); }

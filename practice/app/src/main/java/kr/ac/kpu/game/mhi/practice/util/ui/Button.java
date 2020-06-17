@@ -5,10 +5,9 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import kr.ac.kpu.game.scgyong.gameskeleton.R;
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.iface.Touchable;
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.main.UiBridge;
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.obj.BitmapObject;
+import kr.ac.kpu.game.mhi.practice.util.BitmapObject;
+import kr.ac.kpu.game.mhi.practice.util.ui.iface.Touchable;
+import kr.ac.kpu.game.mhi.practice.util.ui.main.UiBridge;
 
 public class Button extends BitmapObject implements Touchable {
     private static final String TAG = Button.class.getSimpleName();

@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.main.GameTimer;
+import kr.ac.kpu.game.mhi.practice.util.ui.main.GameTimer;
 
 public class FrameAnimationBitmap {
 

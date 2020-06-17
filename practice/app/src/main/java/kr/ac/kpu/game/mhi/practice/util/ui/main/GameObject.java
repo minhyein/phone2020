@@ -2,7 +2,7 @@ package kr.ac.kpu.game.mhi.practice.util.ui.main;
 
 import android.graphics.Canvas;
 
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.iface.Touchable;
+import kr.ac.kpu.game.mhi.practice.util.ui.iface.Touchable;
 
 public class GameObject {
     protected float x, y;

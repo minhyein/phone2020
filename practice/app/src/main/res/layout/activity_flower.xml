@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/flowerVase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="16dp"
+        >
+        <Button
+            android:id="@+id/rose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rosebtn"
+            android:layout_marginBottom="10dp"
+            android:onClick="roseBtnClick"
+            />
+        <Button
+            android:id="@+id/lily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lilybtn"
+            android:layout_marginBottom="10dp"
+            android:onClick="lilyBtnClick"
+            />
+        <Button
+            android:id="@+id/tulip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tulipbtn"
+            android:layout_marginBottom="10dp"
+            android:onClick="tulipBtnClick"
+            />
+        <Button
+            android:id="@+id/maylily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/maylilybtn"
+            android:layout_marginBottom="10dp"
+            android:onClick="maylilyBtnClick"
+            />
+        <Button
+            android:id="@+id/iris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/irisbtn"
+            android:onClick="irisBtnClick"
+        />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="backButtonClick"
+        android:src="@drawable/back"
+        android:layout_gravity="right"
+        />
+</FrameLayout>

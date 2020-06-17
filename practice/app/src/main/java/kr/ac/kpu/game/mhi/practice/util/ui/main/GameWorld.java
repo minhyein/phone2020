@@ -6,9 +6,8 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.iface.Recyclable;
-import kr.ac.kpu.game.scgyong.gameskeleton.framework.iface.Touchable;
-import kr.ac.kpu.game.scgyong.gameskeleton.game.obj.CandyItem;
+import kr.ac.kpu.game.mhi.practice.util.ui.iface.Recyclable;
+import kr.ac.kpu.game.mhi.practice.util.ui.iface.Touchable;
 
 public class GameWorld {
     private static final String TAG = GameWorld.class.getSimpleName();

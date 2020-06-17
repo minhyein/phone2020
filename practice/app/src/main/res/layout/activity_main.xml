@@ -11,9 +11,38 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:layout_height="80dp"
+        android:orientation="vertical">
 
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:progress="30"
+            android:max="100"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/restartBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="restartBtnClick"
+                android:text="Restart"
+                android:paddingBottom="10dp"
+                />
+            <Button
+                android:id="@+id/flowerBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="flowerBtnClick"
+                android:text="Flower" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,13 +50,14 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-
         <kr.ac.kpu.game.mhi.practice.views.grid.Grid
             android:id="@+id/minesweeperGridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             >
+
+
         </kr.ac.kpu.game.mhi.practice.views.grid.Grid>
     </LinearLayout>
 </LinearLayout>

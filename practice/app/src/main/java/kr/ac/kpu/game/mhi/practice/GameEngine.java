@@ -2,20 +2,23 @@ package kr.ac.kpu.game.mhi.practice;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import kr.ac.kpu.game.mhi.practice.util.Generator;
 import kr.ac.kpu.game.mhi.practice.util.PrintGrid;
+import kr.ac.kpu.game.mhi.practice.util.ui.main.GameWorld;
 import kr.ac.kpu.game.mhi.practice.views.grid.Cell;
 
 public class GameEngine {
+    private static final String TAG = GameEngine.class.getSimpleName();
     private static GameEngine instance;
 
-    public static final int BOMB_NUMBER = 10;
-    public static final int WIDTH = 10;
-    public static final int HEIGHT = 16;
+    public static final int BOMB_NUMBER = 50;
+    public static final int WIDTH = 15;
+    public static final int HEIGHT = 20;
 
-    private Context context;
+    private Context mContext;
 
     private Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
 
@@ -26,11 +29,15 @@ public class GameEngine {
         return instance;
     }
 
-    private GameEngine(){ }
+    private GameEngine(){}
+
+    public GameEngine(Context context){
+        mContext = context;
+    }
 
     public void createGrid(Context context){
-        Log.e("GameEngine","createGrid is working");
-        this.context = context;
+        Log.e(TAG,"createGrid is working");
+        this.mContext = context;
 
         // create the grid and store it
         int[][] GeneratedGrid = Generator.generate(BOMB_NUMBER,WIDTH, HEIGHT);
@@ -99,7 +106,8 @@ public class GameEngine {
         }
 
         if( bombNotFound == 0 && notRevealed == 0 ){
-            Toast.makeText(context,"Game won", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,"Game won", Toast.LENGTH_SHORT).show();
+            this.getInstance().createGrid(mContext);
         }
         return false;
     }
@@ -112,11 +120,11 @@ public class GameEngine {
 
     private void onGameLost(){
         // handle lost game
-        Toast.makeText(context,"Game lost", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext,"Game lost", Toast.LENGTH_SHORT).show();
 
         for ( int x = 0 ; x < WIDTH ; x++ ) {
             for (int y = 0; y < HEIGHT; y++) {
-                getCellAt(x,y).setRevealed();
+                //this.getInstance().createGrid(mContext);
             }
         }
     }
