@@ -16,13 +16,6 @@ import kr.ac.kpu.game.mhi.practice.util.ui.main.UiBridge;
 public class ThirdScene extends GameScene {
 
     private static final String TAG = ThirdScene.class.getSimpleName();
-    //private TextMap map;
-    private int mdpi_100;
-
-    private RectF rect = new RectF();
-//    private ImageScrollBackground skyBackground;
-//    private ScoreObject scoreObject;
-//    private GameTimer timer;
 
     public enum Layer {
         bg, platform, item, obstacle, player, ui, COUNT
@@ -36,14 +29,6 @@ public class ThirdScene extends GameScene {
     @Override
     public void update() {
         super.update();
-//        Log.d(TAG, "Score: " + timer.getRawIndex());
-//        if (timer.done()) {
-//            scoreObject.add(100);
-//            timer.reset();
-//        }
-
-
-
     }
 
     @Override
@@ -62,28 +47,6 @@ public class ThirdScene extends GameScene {
     int exp;
 
     private void initObjects() {
-       /* exp = 10;
-
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat mFormat = new SimpleDateFormat("HH");
-        int time = Integer.parseInt(mFormat.format(date));
-        Log.d(TAG, "time : " + mFormat.format(date));
-
-        if (time > 6 && time < 10){
-            skyBackground = new ImageScrollBackground(R.mipmap.bg_sky_am, ImageScrollBackground.Orientation.horizontal, -30);
-        }else if (time < 17){
-            skyBackground = new ImageScrollBackground(R.mipmap.bg_sky_pm, ImageScrollBackground.Orientation.horizontal, -30);
-        }else if (time < 20){
-            skyBackground = new ImageScrollBackground(R.mipmap.bg_sky_evening, ImageScrollBackground.Orientation.horizontal, -30);
-        }else{
-            skyBackground = new ImageScrollBackground(R.mipmap.bg_sky_night, ImageScrollBackground.Orientation.horizontal, -30);
-        }
-
-        gameWorld.add(Layer.bg.ordinal(), skyBackground);*/
-        //gameWorld.add(Layer.bg.ordinal(), new ImageScrollBackground(R.mipmap.bg_window, ImageScrollBackground.Orientation.horizontal, 0));
-        //gameWorld.add(Layer.player.ordinal(), vase);
-
         int x = 20;//UiBridge.metrics.size.x / 5 - UiBridge.x(20);
         int y = 10;//UiBridge.metrics.size.y / 5 - UiBridge.y(10);
         Button roseButton = new Button(x, y, R.mipmap.rose, R.mipmap.green_round_btn, R.mipmap.purple_round_btn);
@@ -94,7 +57,7 @@ public class ThirdScene extends GameScene {
                     gameWorld.removeObject(vase);
                 int vasex = UiBridge.metrics.center.x + UiBridge.x(100);
                 int vasey = UiBridge.metrics.center.y - UiBridge.y(100);
-                vase = new BitmapObject(vasex, vasey,0,0, R.mipmap.rose_1);
+                vase = new BitmapObject(vasex, vasey,0,0, R.drawable.rose_1);
                 gameWorld.add(Layer.player.ordinal(), vase);
             }
         });
@@ -108,7 +71,7 @@ public class ThirdScene extends GameScene {
                     gameWorld.removeObject(vase);
                 int vasex = UiBridge.metrics.center.x + UiBridge.x(100);
                 int vasey = UiBridge.metrics.center.y - UiBridge.y(100);
-                vase = new BitmapObject(vasex, vasey,0,0, R.mipmap.lily_1);
+                vase = new BitmapObject(vasex, vasey,0,0, R.drawable.lily_1);
                 gameWorld.add(Layer.player.ordinal(), vase);
             }
         });
@@ -123,7 +86,7 @@ public class ThirdScene extends GameScene {
                     gameWorld.removeObject(vase);
                 int vasex = UiBridge.metrics.center.x + UiBridge.x(100);
                 int vasey = UiBridge.metrics.center.y - UiBridge.y(100);
-                vase = new BitmapObject(vasex, vasey,0,0, R.mipmap.tulip_1);
+                vase = new BitmapObject(vasex, vasey,0,0, R.drawable.tulip_1);
                 gameWorld.add(Layer.player.ordinal(), vase);
             }
         });
@@ -138,7 +101,7 @@ public class ThirdScene extends GameScene {
                     gameWorld.removeObject(vase);
                 int vasex = UiBridge.metrics.center.x + UiBridge.x(100);
                 int vasey = UiBridge.metrics.center.y - UiBridge.y(100);
-                vase = new BitmapObject(vasex, vasey,0,0, R.mipmap.lily_4);
+                vase = new BitmapObject(vasex, vasey,0,0, R.drawable.lily_4);
                 gameWorld.add(Layer.player.ordinal(), vase);
             }
         });
@@ -153,7 +116,7 @@ public class ThirdScene extends GameScene {
                     gameWorld.removeObject(vase);
                 int vasex = UiBridge.metrics.center.x + UiBridge.x(100);
                 int vasey = UiBridge.metrics.center.y - UiBridge.y(100);
-                vase = new BitmapObject(vasex, vasey,0,0, R.mipmap.iris_1);
+                vase = new BitmapObject(vasex, vasey,0,0, R.drawable.iris_1);
                 gameWorld.add(Layer.player.ordinal(), vase);
             }
         });

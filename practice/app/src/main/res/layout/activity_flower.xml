@@ -16,7 +16,7 @@
         android:id="@+id/flowerVase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="right"
         />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:id="@+id/rose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rosebtn"
+            android:background="@drawable/rose_btn_selector"
             android:layout_marginBottom="10dp"
             android:onClick="roseBtnClick"
             />
@@ -37,7 +37,7 @@
             android:id="@+id/lily"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/lilybtn"
+            android:background="@drawable/lily_btn_selector"
             android:layout_marginBottom="10dp"
             android:onClick="lilyBtnClick"
             />
@@ -45,7 +45,7 @@
             android:id="@+id/tulip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tulipbtn"
+            android:background="@drawable/tulip_btn_selector"
             android:layout_marginBottom="10dp"
             android:onClick="tulipBtnClick"
             />
@@ -53,7 +53,7 @@
             android:id="@+id/maylily"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/maylilybtn"
+            android:background="@drawable/maylily_btn_selector"
             android:layout_marginBottom="10dp"
             android:onClick="maylilyBtnClick"
             />
@@ -61,9 +61,10 @@
             android:id="@+id/iris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/irisbtn"
+            android:background="@drawable/iris_btn_selector"
             android:onClick="irisBtnClick"
         />
+
     </LinearLayout>
     <ImageButton
         android:id="@+id/backButton"
@@ -73,4 +74,15 @@
         android:src="@drawable/back"
         android:layout_gravity="right"
         />
+
+    <ProgressBar
+        android:id="@+id/expBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_gravity="bottom|right"
+        android:paddingRight="100dp"
+        android:paddingBottom="20dp"
+        />
+
 </FrameLayout>

@@ -2,10 +2,12 @@ package kr.ac.kpu.game.mhi.practice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,14 +20,15 @@ public class FlowerActivity extends AppCompatActivity {
 
     private ImageView backGroundImageView;
     private ImageView vase;
+    private ProgressBar pBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flower);
 
-//        backButton = findViewById(R.id.backButton);
         backGroundImageView = findViewById(R.id.backgroundImageView);
+        pBar = findViewById(R.id.expBar);
 
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -45,29 +48,132 @@ public class FlowerActivity extends AppCompatActivity {
 
         vase = findViewById(R.id.flowerVase);
 
+
     }
 
     public void backButtonClick(View view) {
         finish();
     }
 
+    private int levelCheck(){
+        SharedPreferences pref = getSharedPreferences("Exp", 0);
+        int exp = pref.getInt("experience", 0);
+        int level;
+
+        if (exp < 100){
+            level = 1;
+            pBar.setMax(100);
+            pBar.setProgress(exp);
+        } else if (exp < 250){
+            level = 2;
+            pBar.setMax(250);
+            pBar.setProgress(exp);
+        } else if (exp < 400){
+            level = 3;
+            pBar.setMax(400);
+            pBar.setProgress(exp);
+        } else{
+            level = 4;
+            pBar.setProgress(400);
+        }
+        return level;
+    }
+
     public void roseBtnClick(View view) {
-        vase.setImageResource(R.drawable.rose_1);
+        int level = levelCheck();
+
+        switch (level){
+            case 1:
+                vase.setImageResource(R.drawable.rose_1);
+                break;
+            case 2:
+                vase.setImageResource(R.drawable.rose_2);
+                break;
+            case 3:
+                vase.setImageResource(R.drawable.rose_3);
+                break;
+            case 4:
+                vase.setImageResource(R.drawable.rose_4);
+                break;
+        }
+
     }
 
     public void lilyBtnClick(View view) {
-        vase.setImageResource(R.drawable.lily_1);
+        int level = levelCheck();
+
+        switch (level){
+            case 1:
+                vase.setImageResource(R.drawable.lily_1);
+                break;
+            case 2:
+                vase.setImageResource(R.drawable.lily_2);
+                break;
+            case 3:
+                vase.setImageResource(R.drawable.lily_3);
+                break;
+            case 4:
+                vase.setImageResource(R.drawable.lily_4);
+                break;
+        }
+
     }
 
     public void tulipBtnClick(View view) {
-        vase.setImageResource(R.drawable.tulip_1);
+        int level = levelCheck();
+
+        switch (level){
+            case 1:
+                vase.setImageResource(R.drawable.tulip_1);
+                break;
+            case 2:
+                vase.setImageResource(R.drawable.tulip_2);
+                break;
+            case 3:
+                vase.setImageResource(R.drawable.tulip_3);
+                break;
+            case 4:
+                vase.setImageResource(R.drawable.tulip_4);
+                break;
+        }
+
     }
 
     public void maylilyBtnClick(View view) {
-        vase.setImageResource(R.drawable.lily_1);
+        int level = levelCheck();
+
+        switch (level){
+            case 1:
+                vase.setImageResource(R.drawable.lily_1);
+                break;
+            case 2:
+                vase.setImageResource(R.drawable.lily_2);
+                break;
+            case 3:
+                vase.setImageResource(R.drawable.lily_3);
+                break;
+            case 4:
+                vase.setImageResource(R.drawable.lily_4);
+                break;
+        }
     }
 
     public void irisBtnClick(View view) {
-        vase.setImageResource(R.drawable.iris_1);
+        int level = levelCheck();
+
+        switch (level){
+            case 1:
+                vase.setImageResource(R.drawable.lily_1);
+                break;
+            case 2:
+                vase.setImageResource(R.drawable.lily_2);
+                break;
+            case 3:
+                vase.setImageResource(R.drawable.lily_3);
+                break;
+            case 4:
+                vase.setImageResource(R.drawable.lily_4);
+                break;
+        }
     }
 }

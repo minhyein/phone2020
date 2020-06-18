@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
+    <ImageView
+        android:id="@+id/backGround"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -20,30 +29,61 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:progress="30"
             android:max="100"
+            android:padding="16dp"
             />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/restartBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="restartBtnClick"
-                android:text="Restart"
-                android:paddingBottom="10dp"
+                android:background="@drawable/restart_btn_selector"
+                android:layout_marginRight="5dp"
                 />
+
             <Button
                 android:id="@+id/flowerBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="flowerBtnClick"
-                android:text="Flower" />
+                android:background="@drawable/flower_btn_selector"
+                android:layout_marginRight="5dp"
+                />
+
+            <Button
+                android:id="@+id/pauseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="pauseBtnClick"
+                android:background="@drawable/pause_btn_selector"
+                android:layout_marginRight="5dp"
+                />
+
+            <TextView
+                android:id="@+id/fineMine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/timerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:gravity="center_vertical|right"
+                />
+
+
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -60,4 +100,5 @@
 
         </kr.ac.kpu.game.mhi.practice.views.grid.Grid>
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

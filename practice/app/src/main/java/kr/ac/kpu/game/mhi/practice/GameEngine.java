@@ -14,19 +14,29 @@ public class GameEngine {
     private static final String TAG = GameEngine.class.getSimpleName();
     private static GameEngine instance;
 
-    public static final int BOMB_NUMBER = 50;
+    public static final int BOMB_NUMBER = 10;
     public static final int WIDTH = 15;
-    public static final int HEIGHT = 20;
+    public static final int HEIGHT = 10;
+    public static int flags = 0;
 
     private Context mContext;
 
     private Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
+    int experience;
 
     public static GameEngine getInstance() {
         if( instance == null ){
             instance = new GameEngine();
         }
         return instance;
+    }
+
+    public int getBombNumber(){
+        return BOMB_NUMBER;
+    }
+
+    public int getFlags(){
+        return flags;
     }
 
     private GameEngine(){}
@@ -107,15 +117,32 @@ public class GameEngine {
 
         if( bombNotFound == 0 && notRevealed == 0 ){
             Toast.makeText(mContext,"Game won", Toast.LENGTH_SHORT).show();
+            int min = ((GameActivity)mContext).getMin();
+
+            experience = (min+1) * 10;
+            ((GameActivity)mContext).save(experience);
+
             this.getInstance().createGrid(mContext);
+            ((GameActivity)mContext).stopTimer();
+            ((GameActivity)mContext).initProgressBar();
+            ((GameActivity)mContext).startTimerThread();
+            ((GameActivity)mContext).setMineText(BOMB_NUMBER, 0);
+
         }
         return false;
     }
+
 
     public void flag( int x , int y ){
         boolean isFlagged = getCellAt(x,y).isFlagged();
         getCellAt(x,y).setFlagged(!isFlagged);
         getCellAt(x,y).invalidate();
+        if (isFlagged){
+            flags--;
+        } else{
+            flags++;
+        }
+        ((GameActivity)mContext).setMineText(BOMB_NUMBER, flags);
     }
 
     private void onGameLost(){
@@ -124,8 +151,12 @@ public class GameEngine {
 
         for ( int x = 0 ; x < WIDTH ; x++ ) {
             for (int y = 0; y < HEIGHT; y++) {
-                //this.getInstance().createGrid(mContext);
+                this.getInstance().createGrid(mContext);
             }
         }
+        ((GameActivity)mContext).stopTimer();
+        ((GameActivity)mContext).initProgressBar();
+        ((GameActivity)mContext).startTimerThread();
+        ((GameActivity)mContext).setMineText(BOMB_NUMBER, 0);
     }
 }
