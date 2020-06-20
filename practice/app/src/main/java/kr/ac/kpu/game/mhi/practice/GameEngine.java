@@ -1,13 +1,12 @@
 package kr.ac.kpu.game.mhi.practice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import kr.ac.kpu.game.mhi.practice.util.Generator;
 import kr.ac.kpu.game.mhi.practice.util.PrintGrid;
-import kr.ac.kpu.game.mhi.practice.util.ui.main.GameWorld;
 import kr.ac.kpu.game.mhi.practice.views.grid.Cell;
 
 public class GameEngine {
@@ -135,7 +134,9 @@ public class GameEngine {
 
     public void flag( int x , int y ){
         boolean isFlagged = getCellAt(x,y).isFlagged();
-        getCellAt(x,y).setFlagged(!isFlagged);
+        if (!getCellAt(x, y).isRevealed()){
+            getCellAt(x,y).setFlagged(!isFlagged);
+        }
         getCellAt(x,y).invalidate();
         if (isFlagged){
             flags--;
@@ -147,16 +148,8 @@ public class GameEngine {
 
     private void onGameLost(){
         // handle lost game
-        Toast.makeText(mContext,"Game lost", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(mContext.getApplicationContext(), GameoverActivity.class);
+        mContext.startActivity(intent);
 
-        for ( int x = 0 ; x < WIDTH ; x++ ) {
-            for (int y = 0; y < HEIGHT; y++) {
-                this.getInstance().createGrid(mContext);
-            }
-        }
-        ((GameActivity)mContext).stopTimer();
-        ((GameActivity)mContext).initProgressBar();
-        ((GameActivity)mContext).startTimerThread();
-        ((GameActivity)mContext).setMineText(BOMB_NUMBER, 0);
     }
 }

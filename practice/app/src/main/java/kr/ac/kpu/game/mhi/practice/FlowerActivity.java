@@ -1,7 +1,5 @@
 package kr.ac.kpu.game.mhi.practice;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import kr.ac.kpu.game.mhi.practice.util.Button;
-import kr.ac.kpu.game.mhi.practice.util.ui.bg.ImageScrollBackground;
 
 public class FlowerActivity extends AppCompatActivity {
     private static final String TAG = FlowerActivity.class.getSimpleName();
@@ -47,12 +44,27 @@ public class FlowerActivity extends AppCompatActivity {
         }
 
         vase = findViewById(R.id.flowerVase);
-
+        int level = levelCheck();
+        switch (level){
+            case 1:
+                vase.setImageResource(R.drawable.rose_1);
+                break;
+            case 2:
+                vase.setImageResource(R.drawable.rose_2);
+                break;
+            case 3:
+                vase.setImageResource(R.drawable.rose_3);
+                break;
+            case 4:
+                vase.setImageResource(R.drawable.rose_4);
+                break;
+        }
 
     }
 
     public void backButtonClick(View view) {
         finish();
+        ((GameActivity)GameActivity.context).pause();
     }
 
     private int levelCheck(){

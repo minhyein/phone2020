@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +21,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import kr.ac.kpu.game.mhi.practice.util.sound.SoundEffects;
+
 public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = GameActivity.class.getSimpleName();
@@ -30,12 +35,14 @@ public class GameActivity extends AppCompatActivity {
     private int currentProg = 0;
     private int minText;
     private int secText;
-    private String timeText;
     private TextView timerTextView;
     private TextView fineMineText;
     private SharedPreferences pref;
     private SharedPreferences.Editor edit;
     private ImageView backGroundImageView;
+    public static Context context;
+    private MediaPlayer mediaPlayer;
+    private SoundPool soundPool;
 
 
     @Override
@@ -47,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
         restartBtn = findViewById(R.id.restartBtn);
         timerTextView = findViewById(R.id.timerTextView);
         fineMineText = findViewById(R.id.fineMine);
-
+        context = this;
 
         initProgressBar();
         startTimerThread();
@@ -73,6 +80,11 @@ public class GameActivity extends AppCompatActivity {
         }else{
             backGroundImageView.setImageResource(R.drawable.bg_sky_night);
         }
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.maingame_bgm);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
 
 
     }
@@ -158,10 +170,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void flowerBtnClick(View view) {
+        pause();
         Intent intent = new Intent(getApplicationContext(), FlowerActivity.class);
         startActivity(intent);
-        //ThirdScene scene = new ThirdScene();
-        //scene.push();
     }
 
     public void pauseBtnClick(View view) {
