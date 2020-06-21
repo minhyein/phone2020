@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Generator {
     public static int[][] generate(int bombnum, final int width, final int height){
-        //random for generating numbers
         Random rand = new Random();
 
         int [][] grid = new int[width][height];
@@ -16,7 +15,7 @@ public class Generator {
             int x = rand.nextInt(width);
             int y = rand.nextInt(height);
 
-            // -1 = bomb
+            // -1 = 지뢰
             if (grid[x][y] != -1){
                 grid[x][y] = -1;
                 bombnum--;
@@ -42,14 +41,14 @@ public class Generator {
         }
         int cnt = 0;
 
-        if (isMine(grid, x - 1, y + 1, width, height)) cnt++;   //topleft
-        if (isMine(grid, x, y + 1, width, height)) cnt++; //top
-        if (isMine(grid, x + 1, y + 1, width, height)) cnt++;   //topright
-        if (isMine(grid, x - 1, y, width, height)) cnt++;   //left
-        if (isMine(grid, x + 1, y, width, height)) cnt++;   //right
-        if (isMine(grid, x - 1, y - 1, width, height)) cnt++;   //bottom
-        if (isMine(grid, x, y - 1, width, height)) cnt++;   //bottomleft
-        if (isMine(grid, x + 1, y - 1, width, height)) cnt++;   //bottomright
+        if (isMine(grid, x - 1, y + 1, width, height)) cnt++;   //좌상단
+        if (isMine(grid, x, y + 1, width, height)) cnt++; //상단
+        if (isMine(grid, x + 1, y + 1, width, height)) cnt++;   //우상단
+        if (isMine(grid, x - 1, y, width, height)) cnt++;   //좌측
+        if (isMine(grid, x + 1, y, width, height)) cnt++;   //우측
+        if (isMine(grid, x - 1, y - 1, width, height)) cnt++;   //하단
+        if (isMine(grid, x, y - 1, width, height)) cnt++;   //좌하단
+        if (isMine(grid, x + 1, y - 1, width, height)) cnt++;   //우하단
 
 
         return cnt;

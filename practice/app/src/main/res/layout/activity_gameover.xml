@@ -5,14 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameoverActivity"
-    android:background="@drawable/gameover"
     >
+
+    <ImageView
+        android:id="@+id/gameoverImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/returnBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/gameover_btn_selector"
+        android:text="Restart"
         android:onClick="returnBtnClick"
         android:gravity="center|center_vertical"
         android:layout_margin="150dp"

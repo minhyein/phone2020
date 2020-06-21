@@ -1,33 +1,27 @@
 package kr.ac.kpu.game.mhi.practice;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import kr.ac.kpu.game.mhi.practice.util.sound.SoundEffects;
-
 public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = GameActivity.class.getSimpleName();
     private ProgressBar progressBar;
-    private Button restartBtn;
     GameEngine gameEngine;
     private TimerTask timetask;
     boolean isTimertaskCompleted;
@@ -42,7 +36,10 @@ public class GameActivity extends AppCompatActivity {
     private ImageView backGroundImageView;
     public static Context context;
     private MediaPlayer mediaPlayer;
-    private SoundPool soundPool;
+    private int TIMECOUNT = 600;
+    public int mode; //1 - 일반, 2 - 깃발, 3 - 일시정지
+    private ImageView modeImageView;
+
 
 
     @Override
@@ -51,10 +48,11 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         progressBar = findViewById(R.id.progressBar);
-        restartBtn = findViewById(R.id.restartBtn);
         timerTextView = findViewById(R.id.timerTextView);
         fineMineText = findViewById(R.id.fineMine);
         context = this;
+        mode = 1;
+        modeImageView = findViewById(R.id.modeImage);
 
         initProgressBar();
         startTimerThread();
@@ -64,6 +62,8 @@ public class GameActivity extends AppCompatActivity {
         setMineText(gameEngine.getBombNumber(), gameEngine.getFlags());
 
         backGroundImageView = findViewById(R.id.backGround);
+
+        modeImageView.setImageResource(R.drawable.number_0);
 
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -90,21 +90,22 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setMineText(int total, int found) {
-        fineMineText.setText("총 새싹 : " + total + "개 찾은 새싹 : " + found + "개");
+        fineMineText.setText("찾은 새싹 : " + found + " / " + total +"개");
     }
 
+
     public void initProgressBar() {
-        progressBar.setMax(600);
-        progressBar.setProgress(600);
+        progressBar.setMax(TIMECOUNT);
+        progressBar.setProgress(TIMECOUNT);
         minText = 10;
         secText = 00;
     }
 
     public void startTimerThread() {
+        Log.d(TAG, "Timer Start");
         timetask = new TimerTask() {
             @Override
             public void run() {
-                Log.d(TAG, "Timer Start");
                 increaseBar();
                 isTimertaskCompleted = true;
             }
@@ -130,6 +131,8 @@ public class GameActivity extends AppCompatActivity {
                             }
                         } else if(currentProg == 0){
                             stopTimer();
+                            Intent intent = new Intent(context.getApplicationContext(), GameoverActivity.class);
+                            context.startActivity(intent);
                         }
                         progressBar.setProgress(currentProg);
                         timerTextView.setText(minText + " : " + secText);
@@ -143,8 +146,10 @@ public class GameActivity extends AppCompatActivity {
             timer.cancel();
             timer.purge();
             timer = null;
+            mode = 3;
         } else if (timer == null){
             startTimerThread();
+            mode = 1;
         }
     }
 
@@ -166,6 +171,7 @@ public class GameActivity extends AppCompatActivity {
         stopTimer();
         initProgressBar();
         startTimerThread();
+
         setMineText(gameEngine.getBombNumber(), 0);
     }
 
@@ -190,4 +196,13 @@ public class GameActivity extends AppCompatActivity {
         edit.commit();
     }
 
+    public void modeBtnClick(View view) {
+        if (mode == 1){
+            modeImageView.setImageResource(R.drawable.flag);
+            mode = 2;
+        } else {
+            modeImageView.setImageResource(R.drawable.number_0);
+            mode = 1;
+        }
+    }
 }

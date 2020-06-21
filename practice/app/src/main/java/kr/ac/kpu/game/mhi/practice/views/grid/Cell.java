@@ -3,14 +3,13 @@ package kr.ac.kpu.game.mhi.practice.views.grid;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
+import kr.ac.kpu.game.mhi.practice.GameActivity;
 import kr.ac.kpu.game.mhi.practice.GameEngine;
 import kr.ac.kpu.game.mhi.practice.R;
-import kr.ac.kpu.game.mhi.practice.views.grid.BaseCell;
 
 public class Cell extends BaseCell implements View.OnClickListener, View.OnLongClickListener {
     public Cell(Context context, int x, int y){
@@ -27,19 +26,24 @@ public class Cell extends BaseCell implements View.OnClickListener, View.OnLongC
 
     @Override
     public void onClick(View v) {
-        GameEngine.getInstance().click(getXPos(), getYPos());
+        int mode = ((GameActivity)GameActivity.context).mode;
+        if (mode == 1){
+            GameEngine.getInstance().click(getXPos(), getYPos());
+        } else if (mode == 2){
+            GameEngine.getInstance().flag(getXPos(), getYPos());
+        }
+
     }
 
     @Override
     public boolean onLongClick(View v) {
-        GameEngine.getInstance().flag(getXPos(), getYPos());
+
         return true;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.d("Minesweeper", "Cell::onDraw");
         drawButton(canvas);
 
         if(isFlagged()){

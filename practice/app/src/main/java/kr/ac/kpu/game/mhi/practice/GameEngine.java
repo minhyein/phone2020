@@ -17,11 +17,13 @@ public class GameEngine {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 10;
     public static int flags = 0;
+    public boolean isClear;
+
 
     private Context mContext;
 
     private Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
-    int experience;
+    private int experience;
 
     public static GameEngine getInstance() {
         if( instance == null ){
@@ -48,8 +50,7 @@ public class GameEngine {
         Log.e(TAG,"createGrid is working");
         this.mContext = context;
 
-        // create the grid and store it
-        int[][] GeneratedGrid = Generator.generate(BOMB_NUMBER,WIDTH, HEIGHT);
+        int[][] GeneratedGrid = Generator.generate(BOMB_NUMBER, WIDTH, HEIGHT);
         PrintGrid.gridPrint(GeneratedGrid,WIDTH,HEIGHT);
         setGrid(context,GeneratedGrid);
     }
@@ -58,7 +59,7 @@ public class GameEngine {
         for( int x = 0 ; x < WIDTH ; x++ ){
             for( int y = 0 ; y < HEIGHT ; y++ ){
                 if( MinesweeperGrid[x][y] == null ){
-                    MinesweeperGrid[x][y] = new Cell( context , x,y);
+                    MinesweeperGrid[x][y] = new Cell( context, x, y);
                 }
                 MinesweeperGrid[x][y].setValue(grid[x][y]);
                 MinesweeperGrid[x][y].invalidate();
@@ -117,15 +118,15 @@ public class GameEngine {
         if( bombNotFound == 0 && notRevealed == 0 ){
             Toast.makeText(mContext,"Game won", Toast.LENGTH_SHORT).show();
             int min = ((GameActivity)mContext).getMin();
+            isClear = true;
+            flags = 0;
 
             experience = (min+1) * 10;
             ((GameActivity)mContext).save(experience);
-
-            this.getInstance().createGrid(mContext);
-            ((GameActivity)mContext).stopTimer();
-            ((GameActivity)mContext).initProgressBar();
-            ((GameActivity)mContext).startTimerThread();
             ((GameActivity)mContext).setMineText(BOMB_NUMBER, 0);
+
+            Intent intent = new Intent(mContext.getApplicationContext(), GameoverActivity.class);
+            mContext.startActivity(intent);
 
         }
         return false;
@@ -147,7 +148,9 @@ public class GameEngine {
     }
 
     private void onGameLost(){
-        // handle lost game
+        isClear = false;
+        flags = 0;
+        ((GameActivity)mContext).setMineText(BOMB_NUMBER, 0);
         Intent intent = new Intent(mContext.getApplicationContext(), GameoverActivity.class);
         mContext.startActivity(intent);
 
