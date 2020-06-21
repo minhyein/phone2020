@@ -166,7 +166,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void restartBtnClick(View view) {
-
+        mode = 1;
         gameEngine.getInstance().createGrid(this);
         stopTimer();
         initProgressBar();

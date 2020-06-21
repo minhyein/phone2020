@@ -142,7 +142,8 @@ public class GameEngine {
         if (isFlagged){
             flags--;
         } else{
-            flags++;
+            if (!getCellAt(x, y).isRevealed())
+                flags++;
         }
         ((GameActivity)mContext).setMineText(BOMB_NUMBER, flags);
     }
